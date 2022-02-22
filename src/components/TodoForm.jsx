@@ -1,22 +1,39 @@
 import { useState } from "react";
 import "./TodoForm.css";
 
-function TodoForm() {
+function TodoForm(props) {
   const [title, settitle] = useState("");
-  const addList = () => {};
+  const [message, setmessage] = useState("");
+
+  const titleChange = (e) => {
+    settitle(e.target.value);
+  };
+  const messageChange = (e) => {
+    setmessage(e.target.value);
+  };
+
+  const setTodo = () => {
+    if (title === "" || message === "") {
+      console.log("Empty");
+    } else {
+      console.log(title, message);
+      const newTodo = { title, message };
+      props.setlist([...props.list, newTodo]);
+    }
+  };
   return (
     <div>
-      <div className="d-flex">
+      <form className="d-flex">
         <label htmlFor="title">
           Title
-          <input type="text" id="title" />
+          <input type="text" id="title" onChange={titleChange} required />
         </label>
         <label htmlFor="message">
           Message
-          <input type="text" id="message" />
+          <input type="text" id="message" onChange={messageChange} required />
         </label>
-        <button onClick={addList}>Add</button>
-      </div>
+        <button onClick={setTodo}>Add</button>
+      </form>
     </div>
   );
 }

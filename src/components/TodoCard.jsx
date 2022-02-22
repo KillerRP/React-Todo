@@ -1,29 +1,13 @@
-import { useState } from "react";
 import "./TodoCard.css";
 
-function TodoCard() {
-  const [list, setlist] = useState([
-    {
-      tile: "React",
-      message: "Hooks",
-    },
-    {
-      tile: "JS",
-      message: "Loops",
-    },
-    {
-      tile: "Angular",
-      message: "Typescript",
-    },
-  ]);
-
+function TodoCard(props) {
   return (
     <div>
-      {list.map((listval) => {
+      {props.list.map((listval) => {
         return (
           <div className="align-txt-results">
             <div>
-              <h2>{listval.tile}</h2>
+              <h2>{listval.title}</h2>
               <p>{listval.message}</p>
             </div>
             <div>
